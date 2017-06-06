@@ -1,7 +1,7 @@
 # Lenovo Fan Daemon
-The custom fan daemon for lenovo ideapad 710s
+A custom fan daemon for lenovo ideapad 710s
 
-The idea behind it is to look at the temperature, and if it is low enough, disable fans to keep a laptop quiet.
+An idea behind it is to look at the temperature, and if it is low enough, disable fans to keep a laptop quiet.
 
 When the temperature is high, daemon returns fan control back to EFI firmware.
 
