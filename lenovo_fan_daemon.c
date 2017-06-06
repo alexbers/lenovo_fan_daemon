@@ -10,7 +10,7 @@
 #define MAX_SENSORS 10
 #define SLEEP_TIME 1
 
-#define FAN_ON_TEMPERATURE 70
+#define FAN_ON_TEMPERATURE 75
 #define FAN_OFF_TEMPERATURE 65
 
 volatile int need_exit = 0;
