@@ -1,0 +1,12 @@
+[Unit]
+Description=Controls the fan of Lenovo laptop
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/lenovo_fan_daemon
+User=root
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

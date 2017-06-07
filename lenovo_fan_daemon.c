@@ -67,8 +67,10 @@ int main() {
     }
 
     install_signal_handlers();
+    setbuf(stdout, NULL);
 
     printf("Started, found %d sensors\n", temp_fds_len);
+
 
     while(!need_exit){
         int temp;
