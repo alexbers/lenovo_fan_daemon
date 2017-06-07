@@ -36,6 +36,15 @@ int turn_on_fans() {
     return ret;
 }
 
+int both_fans_running() {
+    unsigned char val;
+    int ret = read_ec(FAN1_MODE_REG, &val);
+    ret &= (val == FAN_AUTO_MODE);
+    ret &= read_ec(FAN2_MODE_REG, &val);
+    ret &= (val == FAN_AUTO_MODE);
+    return ret;
+}
+
 int init_fans() {
     ec_init();
 }

@@ -50,7 +50,6 @@ void install_signal_handlers() {
 int main() {
     int temp_fds[MAX_SENSORS];
     int temp_fds_len;
-    int fan_is_on = 1;
     int temps[HISTORY_LEN] = {};
 
     int temp_offset = 0;
@@ -64,7 +63,6 @@ int main() {
 
     init_fans();
     turn_off_fans();
-    fan_is_on = 0;
 
     install_signal_handlers();
 
@@ -86,16 +84,18 @@ int main() {
 
         printf("Last temp: %d, avg: %d\n", temp, avg);
 
-        if(!fan_is_on && avg >= FAN_ON_TEMPERATURE) {
-            printf("The temperature is %d, turning on fans\n", avg);
-            turn_on_fans();
-            fan_is_on = 1;
-        } else if (fan_is_on && avg <= FAN_OFF_TEMPERATURE) {
-            printf("The temperature is %d, turning off fans\n", avg);
-            turn_off_fans();
-            fan_is_on = 0;
+        if(!both_fans_running()) {
+            if(avg >= FAN_ON_TEMPERATURE) {
+                printf("The temperature is %d, turning on fans\n", avg);
+                turn_on_fans();
+            }
+        } else {
+                if (avg <= FAN_OFF_TEMPERATURE) {
+                printf("The temperature is %d, turning off fans\n", avg);
+                turn_off_fans();
+            }
         }
-
+        
         temp_offset = (temp_offset + 1) % HISTORY_LEN;
         if (temp_offset > temp_offset_max) {
             temp_offset_max = temp_offset;
