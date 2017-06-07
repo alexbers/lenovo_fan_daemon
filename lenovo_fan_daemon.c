@@ -61,10 +61,14 @@ int main() {
         return 1;
     }
 
-    init_fans();
-    turn_off_fans();
+    if (!init_fans()) {
+        fprintf(stderr, "Failed to init fan control. Make sure that you have root rights\n");
+        return 1;
+    }
 
     install_signal_handlers();
+
+    printf("Started, found %d sensors\n", temp_fds_len);
 
     while(!need_exit){
         int temp;
@@ -82,7 +86,7 @@ int main() {
         }
         avg /= (temp_offset_max + 1);
 
-        printf("Last temp: %d, avg: %d\n", temp, avg);
+        // printf("Last temp: %d, avg: %d\n", temp, avg);
 
         if(!both_fans_running()) {
             if(avg >= FAN_ON_TEMPERATURE) {

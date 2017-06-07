@@ -74,8 +74,7 @@ int write_ec(unsigned char reg, unsigned char val) {
 }
 
 int ec_init() {
-    ioperm(COMMAND_PORT, 1, 1);
-    ioperm(DATA_PORT, 1, 1);
+    return (ioperm(COMMAND_PORT, 1, 1) != -1) && (ioperm(DATA_PORT, 1, 1) != -1);
 }
 
 void ec_dump() {

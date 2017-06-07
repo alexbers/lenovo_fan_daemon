@@ -48,7 +48,12 @@ int init_temp(int* fds, int fds_len) {
             if (ret == -1) {
                 continue;
             }
+            close(fd);
 
+            if (memmem(buf_file, ret, "Package", 7) == NULL &&
+                memmem(buf_file, ret, "Core", 4) == NULL) {
+                continue;
+            }
 
             snprintf(buf, MAX_PATH_LEN, "/sys/class/hwmon/hwmon%d/temp%d_input", i, j);
             fd = open(buf, O_RDONLY);

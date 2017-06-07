@@ -46,5 +46,5 @@ int both_fans_running() {
 }
 
 int init_fans() {
-    ec_init();
+    return ec_init();
 }
