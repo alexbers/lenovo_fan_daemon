@@ -1,5 +1,5 @@
 # Lenovo Fan Daemon
-A custom fan daemon for lenovo ideapad 710s
+A custom fan daemon for Lenovo Slim 9 and IdeaPad 710s
 
 An idea behind it is to look at the temperature, and if it is low enough, disable fans to keep a laptop quiet.
 
@@ -25,4 +25,6 @@ Launch on boot:
 
 # Supported Hardware
 
-Only lenovo ideapad 710s is supported. It should be relatively easy to add other models. Check https://github.com/hirschmann/nbfc/tree/master/Configs.
+Only Lenovo Slim 9 and IdeaPad 710s are supported. If you have IdeaPad you should put zero to IS_LENOVO_SLIM9 (fans.c).
+
+It should be relatively easy to add other models. Check https://github.com/hirschmann/nbfc/tree/master/Configs.

@@ -7,7 +7,7 @@
 #include "fans.h"
 
 #define HISTORY_LEN 6
-#define MAX_SENSORS 10
+#define MAX_SENSORS 100
 #define SLEEP_TIME 1
 
 #define FAN_ON_TEMPERATURE 75
@@ -111,6 +111,7 @@ int main() {
     }
 
     turn_on_fans();
+    deinit_fans();
 
     exit(0);
 }
